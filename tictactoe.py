@@ -54,6 +54,11 @@ def check(board,marker):
         return False
 #print(check(test_board,'X'))
 
+def checkdraw(board):
+    """Check if game is draw"""
+    if not ' ' in board:
+        return True
+    return False
 
 #function to determine which player will start the game...
 def first():
@@ -109,6 +114,9 @@ while True:
     print(turn+' will start the game')
     st=ready()
     while st:
+        if checkdraw(gameboard[1:]):
+            print("Game Drawn")
+            break
         if turn=='Player1':
             #Player 1's turn...
             print("Here's your sample board:")
@@ -141,7 +149,7 @@ while True:
                 print("Congratulations player 2 has won the game!!!")
                 st=False
             else:
-                if full_space(gameboard):
+                if not ' ' in gameboard :
                     disp_board(gameboard)
                     print("It's a draw!!!")
                     break
